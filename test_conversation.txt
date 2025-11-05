@@ -1,0 +1,28 @@
+Erstelle ein Angebot für BMW Digital Solutions
+Kontaktperson: Dr. Andreas Schmidt
+Email: andreas.schmidt@bmw.de
+
+Projekt: Cloud Migration & Microservices Architecture
+Das Projekt umfasst die Migration der bestehenden monolithischen Anwendung zu einer modernen Microservices-Architektur in der Cloud.
+
+Dauer: 8 Monate
+Start: 01.01.2026
+
+Team:
+- 1x Cloud Architect mit 1400 €/Tag
+- 2x Senior Backend Developer mit 900 €/Tag
+- 2x Senior DevOps Engineer mit 850 €/Tag
+- 1x QA Lead mit 750 €/Tag
+
+Deliverables:
+- Cloud Architecture Design
+- Microservices Implementation
+- CI/CD Pipeline Setup
+- Container Orchestration (Kubernetes)
+- Security & Compliance Setup
+- Migration & Rollout Support
+- Team Training & Documentation
+
+Rabatt: 5%
+22 Arbeitstage pro Monat
+MwSt: 19%

@@ -1,0 +1,47 @@
+customer:
+  name: "Acme Corporation"
+  contact_person: "Max Mustermann"
+  email: "max.mustermann@acme.com"
+  address: "Hauptstraße 123, 10115 Berlin"
+
+project:
+  name: "E-Commerce Platform Modernisierung"
+  description: "Vollständige Überarbeitung der bestehenden E-Commerce-Plattform mit modernen Technologien"
+  duration_months: 6
+  start_date: "2025-12-01"
+
+team:
+  - role: "Solution Architect"
+    count: 1
+    daily_rate: 1200
+    allocation_percent: 100
+
+  - role: "Senior Developer"
+    count: 3
+    daily_rate: 800
+    allocation_percent: 100
+
+  - role: "Junior Developer"
+    count: 2
+    daily_rate: 500
+    allocation_percent: 100
+
+  - role: "QA Engineer"
+    count: 1
+    daily_rate: 650
+    allocation_percent: 50
+
+deliverables:
+  - "Architektur & Design Dokumentation"
+  - "Backend API Development (REST/GraphQL)"
+  - "Frontend Implementation (React)"
+  - "Datenbank Migration & Optimierung"
+  - "Testing & Quality Assurance"
+  - "DevOps Setup (CI/CD Pipeline)"
+  - "Deployment & Go-Live Support"
+  - "Technische Dokumentation"
+
+pricing:
+  working_days_per_month: 20
+  discount_percent: 10
+  tax_percent: 19
