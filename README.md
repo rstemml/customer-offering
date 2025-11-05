@@ -20,8 +20,24 @@ Transform conversations into professional PowerPoint offers with:
 
 ## Quick Start
 
+### Option 1: Web UI (Recommended)
+
 ```bash
-# Install
+# Install dependencies
+pip install -r requirements.txt -r requirements-web.txt
+
+# Start web server
+python app.py
+
+# Open browser: http://localhost:5000
+```
+
+**Modern, intuitive interface. No command line needed.**
+
+### Option 2: Command Line
+
+```bash
+# Install dependencies
 pip install -r requirements.txt
 
 # Generate from example data
@@ -35,16 +51,26 @@ python cli.py generate --data data/example.yaml
 
 ## Features
 
+- 🌐 **Web UI** - Modern, intuitive interface (no command line needed)
 - 📊 **Automatische Preisberechnung** - Stundensätze, Marge, Steuern, Rabatte
 - 📈 **Dynamische Diagramme** - Timeline, Budget-Breakdown, Ressourcen-Allocation
 - 🎨 **Professionelles Template** - 7 Folien, customizable, ready to present
 - 💬 **Chat-Integration** - Daten aus Konversation extrahieren
-- 🚀 **Zero Friction** - Ein Befehl, ein Ergebnis
+- 📁 **File Upload** - Drag & drop YAML/JSON files
+- 🚀 **Zero Friction** - Ein Befehl (oder ein Klick), ein Ergebnis
 - ✅ **Type-Safe** - Pydantic validation, keine Laufzeitfehler
 - 🧪 **Getestet** - Unit tests für alle Berechnungen
 
 ## All Commands
 
+### Web UI
+```bash
+# Start web interface (recommended)
+python app.py
+# Open http://localhost:5000 in browser
+```
+
+### CLI Commands
 ```bash
 # Generate from YAML/JSON
 python cli.py generate --data data/example.yaml
@@ -81,7 +107,8 @@ customer-offering/
 ## Documentation
 
 - **README.md** (this file) - Overview and quick start
-- **USAGE.md** - Detailed usage guide with examples
+- **WEB_UI.md** - Web interface guide (recommended)
+- **USAGE.md** - Command-line usage guide with examples
 - **SHOWCASE.md** - Deep dive into design philosophy and architecture
 
 ## The Vision

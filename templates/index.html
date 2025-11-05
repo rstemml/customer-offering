@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Offering Generator</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="logo">Customer Offering Generator</h1>
+            <p class="tagline">From conversation to professional presentation in minutes.</p>
+        </header>
+
+        <!-- Mode Selection -->
+        <div class="mode-selector">
+            <button class="mode-btn active" data-mode="chat">
+                <span class="icon">💬</span>
+                <span class="label">Chat Extraction</span>
+            </button>
+            <button class="mode-btn" data-mode="upload">
+                <span class="icon">📁</span>
+                <span class="label">Upload File</span>
+            </button>
+            <button class="mode-btn" data-mode="manual">
+                <span class="icon">📝</span>
+                <span class="label">Manual Entry</span>
+            </button>
+        </div>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+
+            <!-- Chat Mode -->
+            <div id="chat-mode" class="mode-content active">
+                <div class="card">
+                    <h2>Beschreiben Sie Ihr Angebot</h2>
+                    <p class="hint">Schreiben Sie in natürlicher Sprache. Das System extrahiert automatisch Kunde, Projekt, Team und Preise.</p>
+
+                    <textarea id="chat-input" class="chat-textarea" placeholder="Beispiel:
+
+Erstelle Angebot für TechStart GmbH
+Kontakt: Sarah Müller, sarah@techstart.de
+
+Projekt: E-Commerce Platform Modernisierung
+Dauer: 6 Monate
+Start: 01.12.2025
+
+Team:
+- 1x Solution Architect, 1200 €/Tag
+- 3x Senior Developer, 800 €/Tag
+- 2x Junior Developer, 500 €/Tag
+
+Deliverables:
+- Architektur & Design
+- Backend API Development
+- Frontend Implementation
+- Testing & QA
+- Deployment
+
+Rabatt: 10%
+20 Arbeitstage pro Monat"></textarea>
+
+                    <button id="extract-btn" class="btn btn-primary">
+                        <span class="btn-text">Daten Extrahieren</span>
+                        <span class="btn-loader" style="display: none;">⏳</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Upload Mode -->
+            <div id="upload-mode" class="mode-content">
+                <div class="card">
+                    <h2>Datei Hochladen</h2>
+                    <p class="hint">Laden Sie eine YAML oder JSON Datei mit Angebotsdaten hoch.</p>
+
+                    <div class="upload-area" id="upload-area">
+                        <div class="upload-icon">📁</div>
+                        <p>Datei hier ablegen oder klicken zum Auswählen</p>
+                        <input type="file" id="file-input" accept=".yaml,.yml,.json" style="display: none;">
+                    </div>
+
+                    <div id="file-info" class="file-info" style="display: none;"></div>
+                </div>
+            </div>
+
+            <!-- Manual Mode -->
+            <div id="manual-mode" class="mode-content">
+                <div class="card">
+                    <h2>Manuelle Eingabe</h2>
+                    <p class="hint">Geben Sie die Angebotsdaten im YAML-Format ein.</p>
+
+                    <textarea id="manual-input" class="yaml-textarea" placeholder="customer:
+  name: &quot;Acme Corporation&quot;
+  contact_person: &quot;Max Mustermann&quot;
+  email: &quot;max@acme.com&quot;
+
+project:
+  name: &quot;E-Commerce Platform&quot;
+  duration_months: 6
+  start_date: &quot;2025-12-01&quot;
+
+team:
+  - role: &quot;Senior Developer&quot;
+    count: 2
+    daily_rate: 800
+
+deliverables:
+  - &quot;Development&quot;
+  - &quot;Testing&quot;
+
+pricing:
+  discount_percent: 10
+  tax_percent: 19"></textarea>
+
+                    <button id="parse-btn" class="btn btn-primary">
+                        <span class="btn-text">YAML Parsen</span>
+                        <span class="btn-loader" style="display: none;">⏳</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Data Preview (shown after extraction/upload/parse) -->
+            <div id="preview-section" class="preview-section" style="display: none;">
+                <div class="card">
+                    <h2>Vorschau & Bearbeiten</h2>
+
+                    <div class="tabs">
+                        <button class="tab-btn active" data-tab="yaml">YAML</button>
+                        <button class="tab-btn" data-tab="pricing">Preiskalkulation</button>
+                    </div>
+
+                    <div id="yaml-tab" class="tab-content active">
+                        <textarea id="preview-yaml" class="yaml-textarea"></textarea>
+                    </div>
+
+                    <div id="pricing-tab" class="tab-content">
+                        <div id="pricing-display" class="pricing-display"></div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button id="calculate-btn" class="btn btn-secondary">
+                            <span class="btn-text">💰 Preis Berechnen</span>
+                        </button>
+                        <button id="generate-btn" class="btn btn-primary">
+                            <span class="btn-text">✨ PowerPoint Generieren</span>
+                            <span class="btn-loader" style="display: none;">⏳</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Success Message -->
+            <div id="success-section" class="success-section" style="display: none;">
+                <div class="card success-card">
+                    <div class="success-icon">🎉</div>
+                    <h2>Angebot Erfolgreich Erstellt!</h2>
+                    <p id="success-message"></p>
+                    <a id="download-link" class="btn btn-primary" download>
+                        <span class="btn-text">📥 PowerPoint Herunterladen</span>
+                    </a>
+                    <button id="new-offer-btn" class="btn btn-secondary">
+                        Neues Angebot Erstellen
+                    </button>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Error Display -->
+        <div id="error-display" class="error-display" style="display: none;">
+            <div class="error-content">
+                <span class="error-icon">⚠️</span>
+                <span id="error-message"></span>
+                <button id="close-error" class="close-error">✕</button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Built with care. Designed with intention. Made to feel inevitable.</p>
+        </footer>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
